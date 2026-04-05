@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Angy 🐾</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to top, #0f2027, #203a43, #2c5364);
+    color: white;
+    overflow: hidden;
+}
+
+/* Pantallas */
+.pantalla {
+    display: none;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    animation: fadeIn 1s;
+}
+
+.activa {
+    display: flex;
+}
+
+/* Botones */
+button {
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    background: #ff7aa2;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+    background: #ff4d88;
+}
+
+/* Carta */
+.carta {
+    max-width: 700px;
+    background: rgba(255,255,255,0.08);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    animation: aparecer 2s;
+}
+
+/* Snoopy */
+.snoopy {
+    font-size: 65px;
+    animation: flotar 4s infinite ease-in-out;
+}
+
+/* Nombre */
+.nombre {
+    color: #ff9ecb;
+    font-weight: bold;
+    animation: glow 2s infinite alternate;
+}
+
+/* Estrellas */
+.estrella {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    opacity: 0.8;
+    animation: parpadeo 2s infinite alternate;
+}
+
+@keyframes parpadeo {
+    from {opacity: 0.2;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes aparecer {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes flotar {
+    0%,100% {transform: translateY(0);}
+    50% {transform: translateY(-15px);}
+}
+
+@keyframes glow {
+    from {text-shadow: 0 0 5px #ff9ecb;}
+    to {text-shadow: 0 0 20px #ff4d88;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Música -->
+<audio autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8d6b5b4c4.mp3?filename=romantic-soft-piano-110469.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Estrellas -->
+<script>
+for(let i=0;i<80;i++){
+    let star=document.createElement("div");
+    star.className="estrella";
+    star.style.top=Math.random()*100+"vh";
+    star.style.left=Math.random()*100+"vw";
+    star.style.animationDuration=(Math.random()*2+1)+"s";
+    document.body.appendChild(star);
+}
+</script>
+
+<!-- Pantalla 1 -->
+<div id="p1" class="pantalla activa">
+    <div class="snoopy">🐶🌙</div>
+    <h2>Hola <span class="nombre">Angy</span>...</h2>
+    <p>Hay algo que quiero que vivas conmigo esta noche</p>
+    <button onclick="next('p2')">Comenzar ✨</button>
+</div>
+
+<!-- Pantalla 2 -->
+<div id="p2" class="pantalla">
+    <h2>Imagina esto...</h2>
+    <p>La noche está tranquila…<br>y estás viendo el cielo con Snoopy 🌙</p>
+    <button onclick="next('p3')">Seguir</button>
+</div>
+
+<!-- Pantalla 3 -->
+<div id="p3" class="pantalla">
+    <h2>En ese momento...</h2>
+    <p>¿Qué harías?</p>
+    <button onclick="choice('r1')">Pensar en algo bonito 💭</button>
+    <button onclick="choice('r2')">Sonreír sin razón 😊</button>
+</div>
+
+<!-- Respuestas -->
+<div id="r1" class="pantalla">
+    <h2>✨ A veces pasa así</h2>
+    <p>Sin buscarlo… algo bonito aparece</p>
+    <button onclick="next('carta')">Continuar</button>
+</div>
+
+<div id="r2" class="pantalla">
+    <h2>😊 Eso significa algo</h2>
+    <p>Como cuando alguien empieza a importar</p>
+    <button onclick="next('carta')">Continuar</button>
+</div>
+
+<!-- Carta -->
+<div id="carta" class="pantalla">
+    <div class="carta">
+        <h2>Para ti 💛</h2>
+        <p>
+        No sé exactamente en qué momento empezaste a ser alguien importante para mí…<br><br>
+        pero pasó. Y pasó de una forma tranquila, sin ruido, como esas cosas que simplemente se sienten bien.<br><br>
+        Me gusta cómo eres.<br><br>
+        Tu forma de ver las cosas, de reírte, de hacer que momentos simples se vuelvan especiales sin siquiera intentarlo.<br><br>
+        Si esto fuera una escena de Snoopy, probablemente él estaría acostado sobre su casita, mirando el cielo, pensando en algo importante…<br><br>
+        y creo que yo estaría haciendo lo mismo, pero pensando en ti.<br><br>
+        Sin hacerlo tan profundo…<br><br>
+        solo quiero decirte algo:<br><br>
+        Me gusta coincidir contigo.<br>
+        Me gusta conocerte.<br>
+        Y me gusta la idea de seguir descubriendo quién eres, poco a poco.<br><br>
+        Tal vez esto apenas empieza,<br>
+        pero tiene algo bonito… y eso ya vale mucho.
+        </p>
+
+        <button onclick="next('final')">💌 Hay algo más...</button>
+    </div>
+</div>
+
+<!-- FINAL INTERACTIVO -->
+<div id="final" class="pantalla">
+    <h2>Antes de terminar...</h2>
+    <p>¿Te gustaría seguir conociéndome? 🌙</p>
+
+    <button onclick="respuestaFinal('si')">Sí 💖</button>
+    <button onclick="respuestaFinal('tambien')">También quiero ✨</button>
+</div>
+
+<!-- RESPUESTA FINAL -->
+<div id="respuesta" class="pantalla">
+    <h2 id="mensajeFinal"></h2>
+</div>
+
+<script>
+function next(id){
+    document.querySelectorAll('.pantalla').forEach(el=>el.classList.remove('activa'));
+    document.getElementById(id).classList.add('activa');
+}
+
+function choice(id){
+    next(id);
+}
+
+function respuestaFinal(tipo){
+    next('respuesta');
+
+    let mensaje = "";
+    if(tipo==="si"){
+        mensaje="Entonces… esto se vuelve aún más bonito 💛";
+    } else {
+        mensaje="Me alegra mucho saber eso… en serio ✨";
+    }
+
+    document.getElementById("mensajeFinal").innerText = mensaje;
+}
+</script>
+
+</body>
+</html>
